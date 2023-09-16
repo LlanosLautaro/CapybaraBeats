@@ -1,0 +1,27 @@
+# Archivos de configuración locales
+*.env
+
+# Directorio de base de datos
+db.sqlite3
+
+# Directorio de archivos estáticos generados
+/staticfiles/
+
+# Directorio de medios generados
+/media/
+
+# Byte-compiled / archivos compilados de Python
+__pycache__/
+*.pyc
+
+# Log y archivos de registro
+*.log
+
+# Archivo de secret key (se recomienda mantenerlo en secreto)
+secret_key.txt
+
+# Archivos de configuración de desarrollo
+*.settings.local
+
+# Entorno virtual
+venv/

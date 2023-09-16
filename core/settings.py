@@ -138,3 +138,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Define User model
+#AUTH_USER_MODEL = 'USERS_AUTENTICATION.USER'
+
+#define login redirect url
+LOGIN_REDIRECT_URL = '/ruta-de-redireccion/'

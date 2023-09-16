@@ -1,0 +1,10 @@
+{% block content %}
+  <h2>Registro de Usuario</h2>
+  <form method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }} <!-- Renderiza el formulario con todos los campos -->
+
+    <button type="submit">Registrarse</button>
+  </form>
+{% endblock %}
