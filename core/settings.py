@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'capybaradb',
+        'NAME': 'CapyDB',
         'USER': 'postgres',
         'PASSWORD': '31416',
         'HOST': 'localhost',
