@@ -6,3 +6,11 @@
     <button type="submit">Iniciar Sesión</button>
   </form>
 {% endblock %}
+{% if request.session.login_successful %}
+    <p>Bienvenido, has iniciado sesión con éxito.</p>
+    <!-- Puedes mostrar contenido adicional o cambiar el elemento según tu necesidad -->
+{% else %}
+    <p>Por favor, inicia sesión.</p>
+{% endif %}
+<a href="{% url 'logout' %}">Cerrar sesión</a>
+
