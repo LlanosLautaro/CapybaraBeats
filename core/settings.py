@@ -45,6 +45,7 @@ PROJECT_APPS=[
 
 # paquetes
 THIRD_PARTY_APPS=[
+    'rest_framework',
     
 ]
 
