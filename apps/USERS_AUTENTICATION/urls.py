@@ -1,10 +1,11 @@
-from django.urls import path
-from .views import UserRegistrationView, CustomLoginView
-from django.contrib.auth.views import LogoutView
+from django.urls import path, include
+from rest_framework import routers
+from USERS_AUTENTICATION import views
+
+
+router = routers.DefaultRouter()
+router.register(r'CapyUser', views.CapyUserViewSet)
 
 urlpatterns = [
-    # Otras URLs de tu aplicación...
-    path('registro/', UserRegistrationView.as_view(), name='registro'),
-    path('login/', CustomLoginView.as_view(), name='login'),
-    path('logout/', LogoutView.as_view(), name='logout'),
+    path('', include(router.urls))
 ]
