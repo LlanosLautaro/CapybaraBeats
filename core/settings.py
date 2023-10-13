@@ -46,6 +46,7 @@ PROJECT_APPS=[
 # paquetes
 THIRD_PARTY_APPS=[
     'rest_framework',
+    'coreapi',
     
 ]
 
@@ -141,7 +142,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Define User model
-#AUTH_USER_MODEL = 'USERS_AUTENTICATION.USER'
+AUTH_USER_MODEL = 'USERS_AUTENTICATION.CapyUser'
 
 #define login redirect url
 LOGIN_REDIRECT_URL = '/ruta-de-redireccion/'
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+}

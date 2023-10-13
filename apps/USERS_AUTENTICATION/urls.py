@@ -3,9 +3,8 @@ from rest_framework import routers
 from USERS_AUTENTICATION import views
 
 
-router = routers.DefaultRouter()
-router.register(r'CapyUser', views.CapyUserViewSet)
-
 urlpatterns = [
-    path('', include(router.urls))
+    path('create/', views.CreateUserView.as_view()),
+    path('token/', views.CreateTokenView.as_view()),
+    path('user/', views.RetreiveUpdateUserView.as_view())
 ]

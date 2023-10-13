@@ -1,21 +1,39 @@
 from rest_framework import serializers
 from .models import CapyUser
+from django.contrib.auth import get_user_model, authenticate
 
 class CapyUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CapyUser
-        fields = ('id', 'username', 'email', 'password', 'is_premium', 'foto_de_perfil')
-        extra_kwargs = {
-            'password': {'write_only': True},
-            'foto_de_perfil': {'required': False}
-        }
-
-    def create(self, validated_data):
-        user = CapyUser.objects.create_user(
-            username=validated_data['username'],
-            email=validated_data['email'],
-            password=validated_data['password'],
-            is_premium=validated_data.get('is_premium', False),
-            foto_de_perfil=validated_data.get('foto_de_perfil', None)
+    class Meta: 
+        model = get_user_model()
+        fields = ['email', 'password', 'username']
+        extra_kwargs = {'password': {'write_only' : True}}
+        
+    def create (self, validate_data):
+        return get_user_model().objects.create_user(**validate_data)
+    
+    def update(self, instance, validated_data):
+        password = validated_data.pop('passwod', None)
+        user = super().update(instance, validated_data)
+        
+        if password:
+            user.set_password=(password)
+            user.save()
+            return user
+        
+        
+class AuthTokenSerialize(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(style={'input_type': 'password'})
+    
+    def validate (self, data):
+        email = data.get('email')
+        password = data.get('password')
+        user = authenticate(request=self.context.get('request'),
+            username = email,
+            password = password
         )
-        return user
+        if not user:
+            raise serializers.ValidationError("No se pudo autenticar", code='authorization')
+        
+        data['user'] = user
+        return data
