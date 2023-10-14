@@ -1,5 +1,5 @@
 from rest_framework import generics, authentication, permissions
-from .serializers import CapyUserSerializer, AuthTokenSerialize
+from .serializers import CapyUserSerializer, AuthTokenSerializer
 from rest_framework.authtoken.views import ObtainAuthToken
 
 class CreateUserView(generics.CreateAPIView):
@@ -14,6 +14,5 @@ class RetreiveUpdateUserView(generics.RetrieveUpdateAPIView):
         return self.request.user
 
 class CreateTokenView(ObtainAuthToken):
-    serializer_class = AuthTokenSerialize
+    serializer_class = AuthTokenSerializer
     
-     

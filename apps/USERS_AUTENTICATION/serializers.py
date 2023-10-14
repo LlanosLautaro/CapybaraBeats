@@ -12,16 +12,17 @@ class CapyUserSerializer(serializers.ModelSerializer):
         return get_user_model().objects.create_user(**validate_data)
     
     def update(self, instance, validated_data):
-        password = validated_data.pop('passwod', None)
+        password = validated_data.pop('password', None)
         user = super().update(instance, validated_data)
-        
+    
         if password:
-            user.set_password=(password)
+            user.set_password(password)
             user.save()
-            return user
+    
+        return user
         
         
-class AuthTokenSerialize(serializers.Serializer):
+class AuthTokenSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField(style={'input_type': 'password'})
     

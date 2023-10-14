@@ -47,6 +47,7 @@ PROJECT_APPS=[
 THIRD_PARTY_APPS=[
     'rest_framework',
     'coreapi',
+    'rest_framework.authtoken',
     
 ]
 
