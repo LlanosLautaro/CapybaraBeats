@@ -48,7 +48,7 @@ THIRD_PARTY_APPS=[
     'rest_framework',
     'coreapi',
     'rest_framework.authtoken',
-    
+    'drf_spectacular',
 ]
 
 #Integracion de aplicaciones 
@@ -148,5 +148,5 @@ AUTH_USER_MODEL = 'USERS_AUTENTICATION.CapyUser'
 #define login redirect url
 LOGIN_REDIRECT_URL = '/ruta-de-redireccion/'
 REST_FRAMEWORK = {
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
