@@ -1,12 +1,18 @@
-from django.contrib.auth.forms import UserCreationForm
-from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
-from django.contrib.auth.views import LoginView
+from rest_framework import generics, authentication, permissions
+from .serializers import CapyUserSerializer, AuthTokenSerializer
+from rest_framework.authtoken.views import ObtainAuthToken
 
-class UserRegistrationView(CreateView):
-    form_class = UserCreationForm
-    success_url = print("Login exitoso")#reverse_lazy('login')  # Puedes redirigir a donde desees después del registro
-    template_name = 'templates/register.html'  # Crea una plantilla para el formulario de registro
+class CreateUserView(generics.CreateAPIView):
+    serializer_class = CapyUserSerializer
+    
+class RetreiveUpdateUserView(generics.RetrieveUpdateAPIView):
+    serializer_class = CapyUserSerializer
+    authentication_classes =[authentication.TokenAuthentication]
+    permission_classes =[permissions.IsAuthenticated]
+    
+    def get_object(self):
+        return self.request.user
 
-class CustomLoginView(LoginView):
-    template_name = 'templates/login.html'  # Ruta a la plantilla de inicio de sesión
+class CreateTokenView(ObtainAuthToken):
+    serializer_class = AuthTokenSerializer
+    

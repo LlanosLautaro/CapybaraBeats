@@ -1,8 +1,10 @@
-from django.urls import path
-from .views import UserRegistrationView, CustomLoginView
+from django.urls import path, include
+from rest_framework import routers
+from USERS_AUTENTICATION import views
+
 
 urlpatterns = [
-    # Otras URLs de tu aplicación...
-    path('registro/', UserRegistrationView.as_view(), name='registro'),
-    path('login/', CustomLoginView.as_view(), name='inicio-sesion'),
+    path('create/', views.CreateUserView.as_view()),
+    path('token/', views.CreateTokenView.as_view()),
+    path('user/', views.RetreiveUpdateUserView.as_view())
 ]

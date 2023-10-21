@@ -45,7 +45,10 @@ PROJECT_APPS=[
 
 # paquetes
 THIRD_PARTY_APPS=[
-    
+    'rest_framework',
+    'coreapi',
+    'rest_framework.authtoken',
+    'drf_spectacular',
 ]
 
 #Integracion de aplicaciones 
@@ -88,7 +91,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'capybaradb',
+        'NAME': 'CapyDB',
         'USER': 'postgres',
         'PASSWORD': '31416',
         'HOST': 'localhost',
@@ -140,7 +143,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Define User model
-#AUTH_USER_MODEL = 'USERS_AUTENTICATION.USER'
+AUTH_USER_MODEL = 'USERS_AUTENTICATION.CapyUser'
 
 #define login redirect url
 LOGIN_REDIRECT_URL = '/ruta-de-redireccion/'
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
