@@ -40,6 +40,7 @@ DJANGO_APPS = [
 
 PROJECT_APPS=[
     'USERS_AUTENTICATION',
+    'MUSIC_PLAYER',
     
 ]
 
