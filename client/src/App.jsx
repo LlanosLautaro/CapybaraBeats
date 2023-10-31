@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MyRoutes } from "./routers/routes";
 import styled from "styled-components";
 import { BrowserRouter } from "react-router-dom";
 import { Sidebar } from "./components/Sidebar";
 import { Light, Dark } from "./styles/Themes";
 import { ThemeProvider } from "styled-components";
-import "@madzadev/audio-player/dist/index.css";
-import "@madzadev/audio-player";
+
 import MusicPlayer from "./components/MusicPlayer";
 
 export const ThemeContext = React.createContext(null);
@@ -15,6 +14,28 @@ function App() {
   const themeStyle = theme === "light" ? Light : Dark;
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  
+  const [data,setData]=useState([])
+  
+  useEffect(()=>{
+    async function fetchData(){
+      console.log(import.meta.env.VITE_API_URL)
+      try{
+        const response = await fetch(`${import.meta.env.VITE_API_URL}`)
+        if(!response.ok){
+          throw new Error('Network response was not ok')
+        }
+        const result = await response.json();
+        console.log(result)
+        setData(result);
+      }catch(error){
+        console.error('Error fetching data',error)
+      }
+
+    }
+    fetchData();
+  },[])
+  
   return (
     <>
       <ThemeContext.Provider value={{ setTheme, theme }}>
