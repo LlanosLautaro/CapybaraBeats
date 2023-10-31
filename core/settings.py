@@ -38,6 +38,7 @@ DJANGO_APPS = [
 ]
 
 
+
 PROJECT_APPS=[
     'USERS_AUTENTICATION',
     'MUSIC_PLAYER',
@@ -50,15 +51,22 @@ THIRD_PARTY_APPS=[
     'coreapi',
     'rest_framework.authtoken',
     'drf_spectacular',
+    "corsheaders",
 ]
 
+# Dar acceso al sv del front 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    # Add other allowed origins if needed
+]
 #Integracion de aplicaciones 
 INSTALLED_APPS= DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -92,7 +100,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'CapyDB',
+        'NAME': 'Capybeatsdb',
         'USER': 'postgres',
         'PASSWORD': '31416',
         'HOST': 'localhost',
