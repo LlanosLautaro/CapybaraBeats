@@ -9,44 +9,37 @@ import { ThemeProvider } from "styled-components";
 import MusicPlayer from "./components/MusicPlayer";
 
 export const ThemeContext = React.createContext(null);
+
 function App() {
   const [theme, setTheme] = useState("light");
   const themeStyle = theme === "light" ? Light : Dark;
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  
-  const [data,setData]=useState([])
-  
-  useEffect(()=>{
-    async function fetchData(){
-      console.log(import.meta.env.VITE_API_URL)
-      try{
-        const response = await fetch(`${import.meta.env.VITE_API_URL}`)
-        if(!response.ok){
-          throw new Error('Network response was not ok')
-        }
-        const result = await response.json();
-        console.log(result)
-        setData(result);
-      }catch(error){
-        console.error('Error fetching data',error)
-      }
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(import.meta.env.VITE_API_URL);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        // const result = await response.json();
+        // setData(result);
+      } catch (error) {
+        console.error('Error fetching data', error);
+      }
     }
     fetchData();
-  },[])
-  
+  }, []);
+
   return (
     <>
       <ThemeContext.Provider value={{ setTheme, theme }}>
         <ThemeProvider theme={themeStyle}>
           <BrowserRouter>
             <Container className={sidebarOpen ? "sidebarState active" : ""}>
-              <Sidebar
-                sidebarOpen={sidebarOpen}
-                setSidebarOpen={setSidebarOpen}
-              />
-              <MusicPlayer/>
+              <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+              <MusicPlayer />
               <MyRoutes />
             </Container>
           </BrowserRouter>
@@ -55,14 +48,16 @@ function App() {
     </>
   );
 }
+
 const Container = styled.div`
   display: grid;
   grid-template-columns: 90px auto;
   background: ${({ theme }) => theme.bgtotal};
-  transition:all 0.3s ;
+  transition: all 0.3s;
   &.active {
     grid-template-columns: 300px auto;
   }
-  color:${({theme})=>theme.text};
+  color: ${({ theme }) => theme.text};
 `;
+
 export default App;

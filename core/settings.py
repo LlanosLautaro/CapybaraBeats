@@ -55,10 +55,13 @@ THIRD_PARTY_APPS=[
 ]
 
 # Dar acceso al sv del front 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-    # Add other allowed origins if needed
-]
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:5173',
+#     # Add other allowed origins if needed
+# ]
+
+CORS_ALLOW_ALL_ORIGINS = True
+
 #Integracion de aplicaciones 
 INSTALLED_APPS= DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
@@ -144,7 +147,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# Rutas para archivos estáticos y multimedia
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+# Directorio donde se almacenan los archivos estáticos
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Directorio donde se almacenan los archivos multimedia (imágenes, canciones, etc.)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
