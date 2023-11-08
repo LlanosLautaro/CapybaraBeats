@@ -6,6 +6,7 @@ import {
   HiOutlineArrowSmLeft,
   HiHome,
   HiSearch,
+  HiIdentification,
   HiCollection,
   HiUser,
   HiCog,
@@ -92,6 +93,11 @@ const linksArray = [
     label: "Home",
     icon: <HiHome />,
     to: "/",
+  },
+  {
+    label: "Register",
+    icon: <HiIdentification />,
+    to: "/Register",
   },
   {
     label: "Search",

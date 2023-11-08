@@ -4,6 +4,7 @@ import { Search } from "../pages/Search";
 import { Library } from "../pages/Library";
 import {Configuration} from "../pages/Configuration";
 import {Profile} from "../pages/Profile";
+import {Register} from "../pages/Register"
 export function MyRoutes() {
   return (
    
@@ -14,6 +15,7 @@ export function MyRoutes() {
         <Route path="/Search" element={<Search />} />
         <Route path="/Configuration" element={<Configuration />} />
         <Route path="/Profile" element={<Profile />} />
+        <Route path="Register" element={<Register/>}/>
       </Routes>
     
   );
