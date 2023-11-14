@@ -13,8 +13,8 @@ def validate_image_file_extension(value):
 class SONG(models.Model):
     title = models.CharField(max_length=100)
     artist = models.CharField(max_length=100)
-    song_file = models.FileField(upload_to='media/songs/', validators=[validate_sound_file_extension])
-    image_file = models.FileField(upload_to='media/images/', validators=[validate_image_file_extension])
+    song_file = models.FileField(upload_to='songs/', validators=[validate_sound_file_extension])
+    image_file = models.FileField(upload_to='images/', validators=[validate_image_file_extension])
 
     def __str__(self):
         return self.title
